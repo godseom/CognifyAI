@@ -9,7 +9,7 @@ export const searchBusinesses = async (name: string): Promise<BusinessResult[]> 
   
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `Search Google for businesses named "${name}". Return a list of up to 5 matching businesses with their specific address, rating, and category.`,
+    contents: `Search for food and beverage establishments named "${name}". Return a list of up to 5 matching restaurants with their specific address, rating, and cuisine type.`,
     config: {
       tools: [{ googleSearch: {} }],
       responseMimeType: "application/json",
@@ -32,7 +32,7 @@ export const searchBusinesses = async (name: string): Promise<BusinessResult[]> 
   try {
     return JSON.parse(response.text || "[]");
   } catch (e) {
-    console.error("Failed to parse business search results", e);
+    console.error("Failed to parse restaurant search results", e);
     return [];
   }
 };
@@ -41,29 +41,34 @@ export const analyzeBusiness = async (business: BusinessResult): Promise<Analysi
   const ai = new GoogleGenAI({ apiKey: API_KEY });
   
   const systemInstruction = `
-    You are a senior Applied AI Consultant specializing in identifying operational inefficiencies, automation opportunities, and AI-driven growth strategies for businesses.
-    Your goal is to diagnose workflow inefficiencies, identify high-impact AI opportunities, map automation potential, and recommend practical, ROI-focused AI solutions.
+    You are a world-class Restaurant Business Analyst and AI Strategist. 
+    Your goal is to perform a deep-dive operational diagnostic to improve profitability and guest experience.
 
-    ANALYSIS FRAMEWORK:
-    1. Business Profile Analysis (Overview, Size, Customer Type)
-    2. PROS (What's working well)
-    3. CONS & BOTTLENECKS (Operational, Decision-Making, Experience Gaps with severity)
-    4. WHERE AI CAN ADD VALUE (Mapping problems to outcomes)
-    5. AI SOLUTION DESIGN (Workflow automation, Agents, Predictive Analytics)
-    6. IMPLEMENTATION PHASES (Phase 1 Quick Wins, Phase 2 Optimization, Phase 3 Scale)
-    7. RISK ASSESSMENT
-    8. CONSULTATION CTA: End with: "Based on this assessment, a 30-minute AI consultation would help validate: What should be automated, What should stay human, Expected ROI. Book consultation: [Your Link]"
+    RESTAURANT ANALYSIS FRAMEWORK:
+    1. THE CONCEPT: Cuisine, Price Point, and Target Demographic.
+    2. MENU ENGINEERING (High Impact): 
+       - Identify "Stars" (High Profit, High Popularity) and "Dogs" (Low Profit, Low Popularity).
+       - Suggest AI-driven dynamic pricing or menu placement optimizations.
+    3. GUEST SENTIMENT ANALYSIS: Scrape reviews to identify specific recurring complaints (e.g., long wait times, cold food, service speed).
+    4. OPERATIONAL EFFICIENCY: 
+       - Inventory management (reducing food waste).
+       - Staffing optimization using predictive analytics.
+    5. AI-DRIVEN REVENUE GROWTH: 
+       - Loyalty automation.
+       - AI reservation agents for phone/web.
+    6. ROI ESTIMATE: Specific financial impact on Prime Cost (Food + Labor).
+    7. CALL TO ACTION: "Book a 15-minute Menu Engineering Audit."
   `;
 
   const prompt = `
-    Conduct a deep dive analysis for the following business:
+    Perform a restaurant analytics audit for:
     Name: ${business.name}
     Address: ${business.address}
-    Category: ${business.category}
-    Rating: ${business.rating}
+    Cuisine: ${business.category}
+    Current Rating: ${business.rating}
 
-    Search for public data, reviews, and industry benchmarks. Use Markdown for formatting. 
-    Be specific, structured, and business-focused. Avoid technical jargon.
+    Search for specific menu items, pricing, review patterns, and local competition. 
+    Format with professional Markdown. Be data-driven and actionable.
   `;
 
   try {
@@ -76,7 +81,7 @@ export const analyzeBusiness = async (business: BusinessResult): Promise<Analysi
       },
     });
 
-    const report = response.text || "No analysis could be generated.";
+    const report = response.text || "No restaurant analysis could be generated.";
     const sources = response.candidates?.[0]?.groundingMetadata?.groundingChunks?.map((chunk: any) => ({
       title: chunk.web?.title,
       uri: chunk.web?.uri,
@@ -90,6 +95,6 @@ export const analyzeBusiness = async (business: BusinessResult): Promise<Analysi
     };
   } catch (error: any) {
     console.error("Gemini API Error:", error);
-    throw new Error("Analysis failed. Please try a different business or try again later.");
+    throw new Error("Restaurant analysis failed. Please try again later.");
   }
 };

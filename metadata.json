@@ -1,6 +1,6 @@
 {
   "name": "CognifyAI.",
-  "description": "Strategic AI & Automation consultancy for businesses. Diagnosing inefficiencies, mapping automation potential, and designing ROI-focused AI roadmaps.",
+  "description": "CognifyAI is an applied AI consultation and automation platform that analyzes business operations, identifies inefficiencies, and designs intelligent workflows so teams can focus on strategy while AI handles execution.",
   "requestFramePermissions": [
     "geolocation"
   ]

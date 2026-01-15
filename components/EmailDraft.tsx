@@ -7,106 +7,57 @@ interface EmailDraftProps {
 }
 
 export const EmailDraft: React.FC<EmailDraftProps> = ({ companyName, onClose }) => {
-  const emailSubject = `How AI can unlock efficiency & growth at ${companyName}`;
-  const emailBody = `Hi [First Name],
+  const emailSubject = `Optimizing Margins & Menu Engineering for ${companyName}`;
+  const emailBody = `Hi [Owner/GM Name],
 
-I’ve been reviewing how companies like ${companyName} operate today, especially around workflows, decision-making, and customer interactions.
+I’ve been analyzing the digital footprint of ${companyName} and comparing it against current restaurant operational benchmarks.
 
-**What’s working well:**
+**What your guests love:**
 
-* Strong domain expertise and clear business direction
-* Teams focused on execution and growth
-* Existing digital tools supporting daily operations
+* Strong sentiment around [Mention positive review trend]
+* Distinct brand identity in the [Cuisine Type] space
 
-**Where friction usually appears (industry-wide):**
+**The "Prime Cost" Opportunity:**
 
-* Repetitive manual tasks consuming skilled talent time
-* Disconnected systems causing delays or data loss
-* Decisions made on partial data instead of real-time insights
-* Customer or internal requests waiting on human availability
+Most independent restaurants lose 4-7% of their bottom line to three areas that AI is specifically built to solve:
 
-This is exactly where **applied AI workflows** create leverage.
+1. **Menu Friction:** Items with high labor costs but low margin taking up prime menu real estate.
+2. **Predictive Prep:** Inventory waste caused by static prep lists rather than AI-driven guest count forecasting.
+3. **Automated Front-of-House:** Using AI Voice Agents to handle 80% of phone reservations, freeing staff to focus on the floor.
 
-At **ASAP AI**, we design AI systems that:
+At **GourmetAnalytics**, we don't just provide "software." We deliver a **Restaurant Intelligence Audit**.
 
-* Eliminate repetitive operational work
-* Automate decision-support using real business data
-* Improve speed, accuracy, and scalability
-* Let teams focus on strategy while AI handles execution
+I’d like to offer a **15-minute Menu Engineering Walkthrough** where we'll identify your 3 highest-impact margin opportunities for the next quarter.
 
-Rather than selling tools, we start with a **30-minute consultation** to identify:
-
-* What should *never* be automated
-* What *must* be automated
-* Where AI can create immediate ROI
-
-If this sounds relevant, you can book a quick consultation here:
-👉 **https://asap-ai-agency.vercel.app/#**
-
-Happy to explore how AI can fit *your* workflow — not the other way around.
+You can book a slot here:
+👉 **https://gourmet-analytics.io/audit**
 
 Best regards,
-**Om Godse**
-Founder | ASAP AI
-https://asap-ai-agency.vercel.app/# | 9423082345`;
+**Restaurant AI Specialist**
+GourmetAnalytics
+[Your Phone Number]`;
 
   const copyToClipboard = () => {
     const fullText = `Subject: ${emailSubject}\n\n${emailBody}`;
     navigator.clipboard.writeText(fullText);
-    alert("Email draft copied to clipboard!");
+    alert("Strategy draft copied to clipboard!");
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
-      <div className="bg-white w-full max-w-2xl rounded-t-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200">
-        {/* Gmail Header */}
-        <div className="bg-[#404040] text-white px-4 py-3 flex items-center justify-between">
-          <span className="text-sm font-bold">New Message</span>
-          <div className="flex items-center space-x-3">
-            <button onClick={onClose} className="hover:bg-white/10 p-1 rounded transition-colors">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
-            </button>
-          </div>
-        </div>
-        
-        {/* Gmail Fields */}
-        <div className="border-b border-slate-100 px-4 py-2 flex items-center space-x-2">
-          <span className="text-slate-400 text-sm w-12">To</span>
-          <input type="text" className="flex-1 outline-none text-sm" placeholder="Recipients" />
-        </div>
-        <div className="border-b border-slate-100 px-4 py-2 flex items-center space-x-2">
-          <span className="text-slate-400 text-sm w-12">Subject</span>
-          <input type="text" className="flex-1 outline-none text-sm font-medium" defaultValue={emailSubject} />
-        </div>
-
-        {/* Gmail Body */}
-        <div className="flex-1 overflow-y-auto p-4 bg-white text-sm text-slate-700 font-sans whitespace-pre-wrap leading-relaxed">
-          {emailBody}
-        </div>
-
-        {/* Gmail Footer */}
-        <div className="p-4 border-t border-slate-100 flex items-center justify-between bg-white">
-          <div className="flex items-center space-x-4">
-            <button 
-              onClick={copyToClipboard}
-              className="bg-[#0b57d0] hover:bg-[#0842a0] text-white px-6 py-2 rounded-full font-bold transition-all shadow-md flex items-center"
-            >
-              Copy Draft
-            </button>
-            <div className="flex items-center space-x-3 text-slate-500">
-              <button className="hover:text-slate-700">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
-              </button>
-              <button className="hover:text-slate-700">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
-              </button>
-            </div>
-          </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-stone-900/60 backdrop-blur-sm p-4">
+      <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200 border border-stone-200">
+        <div className="bg-emerald-900 text-white px-4 py-3 flex items-center justify-between">
+          <span className="text-sm font-bold">Restaurant Strategy Outreach</span>
+          <button onClick={onClose} className="hover:bg-white/10 p-1 rounded transition-colors">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
           </button>
         </div>
-      </div>
-    </div>
-  );
-};
+        
+        <div className="border-b border-stone-100 px-4 py-3 bg-stone-50">
+          <div className="flex items-center space-x-2 mb-2">
+            <span className="text-stone-400 text-xs w-16 font-bold uppercase">To:</span>
+            <input type="text" className="bg-transparent flex-1 outline-none text-sm" placeholder="Restaurant Owner / GM" />
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-stone-400 text-xs w-16 font-bold uppercase">Subject:</span>
+            <input type="text" className="bg-
