@@ -1,0 +1,7 @@
+{
+  "name": "CognifyAI.",
+  "description": "Strategic AI & Automation consultancy for businesses. Diagnosing inefficiencies, mapping automation potential, and designing ROI-focused AI roadmaps.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
