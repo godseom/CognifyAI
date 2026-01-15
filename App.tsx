@@ -66,6 +66,13 @@ const App: React.FC = () => {
 
   return (
     <Layout>
+      {showEmailDraft && result && (
+        <EmailDraft 
+          companyName={result.business.name} 
+          onClose={() => setShowEmailDraft(false)} 
+        />
+      )}
+      
       <div className="max-w-5xl mx-auto px-4 py-16 md:py-24 text-stone-900">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-900 text-emerald-50 text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
@@ -123,7 +130,7 @@ const App: React.FC = () => {
                 >
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-stone-50 rounded-2xl flex items-center justify-center text-stone-400 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-900 group-hover:text-emerald-900 transition-colors">{biz.name}</h4>
@@ -146,7 +153,7 @@ const App: React.FC = () => {
              <div className="relative inline-block mb-10">
                 <div className="w-24 h-24 border-4 border-emerald-100 border-t-emerald-600 rounded-full animate-spin"></div>
              </div>
-             <h3 className="text-2xl font-bold text-stone-900 mb-3">Auditing Restaurant Operations</h3>
+             <h3 className="text-2xl font-bold text-stone-900 mb-3 font-display">Auditing Restaurant Operations</h3>
              <p className="text-stone-500 font-medium italic">Simulating menu engineering patterns and guest sentiment...</p>
           </div>
         )}
@@ -155,7 +162,7 @@ const App: React.FC = () => {
           <div className="animate-in fade-in slide-in-from-bottom-10 duration-1000">
              <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-stone-900 mb-1">{result.business.name}</h3>
+                  <h3 className="text-3xl font-bold text-emerald-950 mb-1 font-display">{result.business.name}</h3>
                   <p className="text-stone-400 font-medium text-sm flex items-center">
                     <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"/></svg>
                     {result.business.address}
@@ -164,10 +171,10 @@ const App: React.FC = () => {
                 <div className="flex items-center space-x-3">
                    <button 
                     onClick={() => setShowEmailDraft(true)}
-                    className="bg-emerald-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-emerald-100 hover:bg-emerald-800 transition-all flex items-center"
+                    className="bg-emerald-900 text-white px-6 py-3 rounded-2xl text-sm font-bold shadow-xl shadow-emerald-200 hover:bg-emerald-800 transition-all flex items-center"
                    >
                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/></svg>
-                     Email Strategy
+                     Strategy Brief
                    </button>
                    <span className="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl text-xs font-bold border border-emerald-100 uppercase tracking-widest">
                      Audit Complete
@@ -185,7 +192,7 @@ const App: React.FC = () => {
               { title: "Waste Reduction", desc: "Predictive inventory tools to decrease food waste by up to 15%." },
               { title: "Staffing Models", desc: "Machine learning models to predict rush hours and optimize labor cost %." }
             ].map((feature, i) => (
-              <div key={i} className="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm">
+              <div key={i} className="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm hover:border-emerald-100 transition-colors">
                 <div className="w-12 h-12 bg-stone-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 font-bold">0{i+1}</div>
                 <h4 className="font-bold text-stone-900 mb-3">{feature.title}</h4>
                 <p className="text-stone-500 text-sm leading-relaxed">{feature.desc}</p>

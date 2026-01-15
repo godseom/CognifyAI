@@ -60,4 +60,26 @@ GourmetAnalytics
           </div>
           <div className="flex items-center space-x-2">
             <span className="text-stone-400 text-xs w-16 font-bold uppercase">Subject:</span>
-            <input type="text" className="bg-
+            <input type="text" className="bg-transparent flex-1 outline-none text-sm font-bold text-emerald-900" defaultValue={emailSubject} />
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-6 bg-white text-sm text-stone-700 font-sans whitespace-pre-wrap leading-relaxed">
+          {emailBody}
+        </div>
+
+        <div className="p-4 border-t border-stone-100 flex items-center justify-between bg-white">
+          <button 
+            onClick={copyToClipboard}
+            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-md flex items-center"
+          >
+            Copy Strategy Draft
+          </button>
+          <button onClick={onClose} className="text-stone-400 hover:text-stone-600 font-bold text-xs uppercase tracking-widest">
+            Discard
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
